@@ -1,65 +1,211 @@
-import Image from "next/image";
+"use client"
+
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { Brain, MessageCircle, UserCheck, ArrowRight, Sparkles, Heart } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 text-white selection:bg-white selection:text-emerald-700">
+
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute w-[600px] h-[600px] bg-emerald-400/10 rounded-full blur-[140px] -top-48 -left-48" />
+        <div className="absolute w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-[120px] -bottom-24 -right-24" />
+      </div>
+
+      <Navbar />
+
+      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8"
+        >
+          <Sparkles className="w-4 h-4 text-emerald-300" />
+          <span className="text-xs font-medium tracking-wider uppercase text-white/70">Your Mental Health Companion</span>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-6xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tight"
+        >
+          Kesehatan Mental <br />
+          <span className="text-emerald-300">Dimulai Dari Sini.</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-lg md:text-xl mb-10 text-white/60 max-w-2xl font-light leading-relaxed"
+        >
+          Platform modern yang menggabungkan AI dan psikologi untuk membantu kamu memahami diri, mengelola emosi, dan menemukan ketenangan.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-5"
+        >
+          <Link
+            href="/register"
+            className="group flex items-center gap-2 bg-emerald-400 text-slate-900 px-8 py-4 rounded-2xl font-bold shadow-lg hover:bg-emerald-300 transition-all active:scale-95"
+          >
+            Mulai Perjalanan <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          <Link
+            href="/login"
+            className="px-8 py-4 rounded-2xl border border-white/20 backdrop-blur-sm font-semibold hover:bg-white/10 transition-all"
+          >
+            Masuk ke Akun
+          </Link>
+        </motion.div>
+      </section>
+
+      <section id="features" className="relative px-6 pb-32 z-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <FeatureCard
+            icon={<Heart className="w-6 h-6" />}
+            title="Mood Tracker"
+            desc="Visualisasikan spektrum emosimu setiap hari dengan analitik berbasis AI."
+          />
+          <FeatureCard
+            icon={<MessageCircle className="w-6 h-6" />}
+            title="AI Companion"
+            desc="Teman curhat pintar yang siap mendengarkan tanpa menghakimi, 24/7."
+          />
+          <FeatureCard
+            icon={<UserCheck className="w-6 h-6" />}
+            title="Expert Consultation"
+            desc="Terhubung langsung dengan profesional psikolog berlisensi secara privat."
+          />
+        </div>
+      </section>
+
+      <section id="about" className="px-6 pb-32">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <h2 className="text-4xl font-bold mb-6">Tentang Mindora</h2>
+            <p className="text-white/60 leading-relaxed mb-4">
+              Mindora adalah platform kesehatan mental berbasis teknologi yang dirancang untuk membantu individu memahami kondisi emosional mereka secara lebih dalam.
+            </p>
+            <p className="text-white/50 leading-relaxed">
+              Dengan menggabungkan AI, psikologi, dan pengalaman pengguna yang intuitif, Mindora memberikan solusi modern untuk menjaga keseimbangan mental di era digital.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="bg-white/5 p-10 rounded-[2rem] backdrop-blur-xl border border-white/10"
+          >
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-bold text-xl mb-1">Fokus pada Pengguna</h3>
+                <p className="text-sm text-white/50">Dirancang untuk kenyamanan dan keamanan pengguna</p>
+              </div>
+              <div>
+                <h3 className="font-bold text-xl mb-1">Teknologi AI</h3>
+                <p className="text-sm text-white/50">Memberikan insight personal berbasis data</p>
+              </div>
+              <div>
+                <h3 className="font-bold text-xl mb-1">Akses Mudah</h3>
+                <p className="text-sm text-white/50">Bisa digunakan kapan saja dan di mana saja</p>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      <section className="text-center pb-32 px-6">
+        <div className="max-w-4xl mx-auto p-12 rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            &quot;Kesehatan mental bukan tujuan, melainkan sebuah proses.&quot;
+          </h2>
+          <p className="opacity-60 mb-8 italic">
+            - Bergabung bersama ribuan pengguna lainnya -
+          </p>
+          <Link
+            href="/register"
+            className="inline-block bg-emerald-400 hover:bg-emerald-300 text-slate-900 px-10 py-4 rounded-full font-bold transition-all shadow-lg"
+          >
+            Join Mindora Now
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  )
+}
+
+function Navbar() {
+  return (
+    <nav className="fixed top-0 w-full flex justify-between items-center px-8 py-6 bg-black/20 backdrop-blur-xl border-b border-white/10 z-[100]">
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+          <Brain className="w-5 h-5 text-emerald-600" />
+        </div>
+        <h1 className="font-bold text-2xl tracking-tight">Mindora</h1>
+      </div>
+
+      <div className="hidden md:flex gap-10 text-sm font-medium text-white/70">
+        <a href="#features" className="hover:text-white transition">Features</a>
+        <a href="#about" className="hover:text-white transition">About</a>
+      </div>
+
+      <Link
+        href="/login"
+        className="bg-white/10 px-6 py-2 rounded-full border border-white/20 hover:bg-white hover:text-slate-900 transition font-semibold"
+      >
+        Login
+      </Link>
+    </nav>
+  )
+}
+
+function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+  return (
+    <motion.div
+      whileHover={{ y: -10 }}
+      className="group bg-white/5 backdrop-blur-2xl p-8 rounded-[2rem] border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-500"
+    >
+      <div className="w-12 h-12 bg-emerald-400/20 rounded-2xl flex items-center justify-center mb-6 text-emerald-300 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-slate-900 transition-all duration-500">
+        {icon}
+      </div>
+      <h3 className="text-2xl font-bold mb-3">{title}</h3>
+      <p className="text-white/50 leading-relaxed text-sm">{desc}</p>
+    </motion.div>
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="relative border-t border-white/10 bg-black/20 backdrop-blur-md py-12 text-center z-10">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-left">
+          <h2 className="font-bold text-xl mb-1">Mindora</h2>
+          <p className="text-white/40 text-sm italic">Mindfulness in Every Step.</p>
+        </div>
+        <div className="text-sm text-white/40">
+          <p>© 2026 Mindora</p>
+          <p className="mt-1 opacity-70">
+            This project is currently frontend-only and not fully functional.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      </div>
+    </footer>
+  )
 }
