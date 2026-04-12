@@ -7,7 +7,7 @@ import {
 } from "lucide-react"
 
 export default function Dashboard() {
-    const userName = "Kevin"
+    const userName = "Joko"
 
     return (
         <div className="min-h-screen bg-[#F8FAFC] text-slate-800">
