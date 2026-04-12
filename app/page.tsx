@@ -15,6 +15,7 @@ export default function Home() {
 
       <Navbar />
 
+      {/* HERO */}
       <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +24,9 @@ export default function Home() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8"
         >
           <Sparkles className="w-4 h-4 text-emerald-300" />
-          <span className="text-xs font-medium tracking-wider uppercase text-white/70">Your Mental Health Companion</span>
+          <span className="text-xs font-medium tracking-wider uppercase text-white/70">
+            Your Mental Health Companion
+          </span>
         </motion.div>
 
         <motion.h1
@@ -67,6 +70,34 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* 🚧 PROTOTYPE NOTICE */}
+      <section className="relative px-6 pb-20 z-10 max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="bg-yellow-400/10 border border-yellow-300/20 backdrop-blur-xl p-8 rounded-3xl text-center shadow-lg"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-yellow-300">
+            🚧 Masih Tahap Prototype
+          </h2>
+
+          <p className="text-white/70 leading-relaxed mb-3">
+            Website <span className="font-semibold text-white">Mindora</span> saat ini masih dalam tahap pengembangan (prototype).
+          </p>
+
+          <p className="text-white/60 text-sm leading-relaxed">
+            Beberapa fitur belum sepenuhnya berfungsi karena sistem backend belum terintegrasi.
+            Data yang ditampilkan, termasuk AI, masih bersifat terbatas dan berdasarkan input yang disediakan oleh developer.
+          </p>
+
+          <div className="mt-6 text-xs text-white/40">
+            Versi ini dibuat untuk keperluan demo & pengembangan UI/UX.
+          </div>
+        </motion.div>
+      </section>
+
+      {/* FEATURES */}
       <section id="features" className="relative px-6 pb-32 z-10 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <FeatureCard
@@ -84,65 +115,6 @@ export default function Home() {
             title="Expert Consultation"
             desc="Terhubung langsung dengan profesional psikolog berlisensi secara privat."
           />
-        </div>
-      </section>
-
-      <section id="about" className="px-6 pb-32">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">Tentang Mindora</h2>
-            <p className="text-white/60 leading-relaxed mb-4">
-              Mindora adalah platform kesehatan mental berbasis teknologi yang dirancang untuk membantu individu memahami kondisi emosional mereka secara lebih dalam.
-            </p>
-            <p className="text-white/50 leading-relaxed">
-              Dengan menggabungkan AI, psikologi, dan pengalaman pengguna yang intuitif, Mindora memberikan solusi modern untuk menjaga keseimbangan mental di era digital.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="bg-white/5 p-10 rounded-[2rem] backdrop-blur-xl border border-white/10"
-          >
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-bold text-xl mb-1">Fokus pada Pengguna</h3>
-                <p className="text-sm text-white/50">Dirancang untuk kenyamanan dan keamanan pengguna</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-1">Teknologi AI</h3>
-                <p className="text-sm text-white/50">Memberikan insight personal berbasis data</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-1">Akses Mudah</h3>
-                <p className="text-sm text-white/50">Bisa digunakan kapan saja dan di mana saja</p>
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
-      </section>
-
-      <section className="text-center pb-32 px-6">
-        <div className="max-w-4xl mx-auto p-12 rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            &quot;Kesehatan mental bukan tujuan, melainkan sebuah proses.&quot;
-          </h2>
-          <p className="opacity-60 mb-8 italic">
-            - Bergabung bersama ribuan pengguna lainnya -
-          </p>
-          <Link
-            href="/register"
-            className="inline-block bg-emerald-400 hover:bg-emerald-300 text-slate-900 px-10 py-4 rounded-full font-bold transition-all shadow-lg"
-          >
-            Join Mindora Now
-          </Link>
         </div>
       </section>
 

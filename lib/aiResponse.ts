@@ -1,7 +1,24 @@
 import { healthQA } from "@/lib/healthQA";
 
+const normalizeWords: Record<string, string> = {
+  capek: "lelah",
+  cape: "lelah",
+  galau: "sedih",
+  stress: "stres",
+  pusing: "pusing",
+};
+
+const cleanText = (text: string): string[] => {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s]/g, "")
+    .split(" ")
+    .map((w) => normalizeWords[w] || w)
+    .filter((w) => w.length > 2); // buang kata kecil
+};
+
 export const getAIResponse = (text: string): string => {
-  const input: string = text.toLowerCase();
+  const words = cleanText(text);
 
   let bestResponse: string | null = null;
   let maxScore = 0;
@@ -10,9 +27,13 @@ export const getAIResponse = (text: string): string => {
     let score = 0;
 
     for (const keyword of item.keywords) {
-      if (input.includes(keyword)) {
-        score += 1;
+      if (words.includes(keyword)) {
+        score += 2;
       }
+    }
+
+    if (item.category === "mental" && words.includes("sedih")) {
+      score += 2;
     }
 
     if (score > maxScore) {
@@ -21,17 +42,13 @@ export const getAIResponse = (text: string): string => {
     }
   }
 
-  if (bestResponse !== null) {
+  if (bestResponse && maxScore > 0) {
     return bestResponse;
   }
 
-  if (input.includes("sedih") || input.includes("capek")) {
-    return "Aku ngerti kamu lagi capek. Mau cerita lebih lanjut?";
+  if (words.includes("sedih") || words.includes("lelah")) {
+    return "Aku ngerti kamu lagi capek atau sedih. Mau cerita lebih lanjut?";
   }
 
-  if (input.includes("senang")) {
-    return "Wah, senang dengarnya";
-  }
-
-  return "Aku belum mengerti, coba jelaskan gejalanya lebih detail";
+  return "Aku belum sepenuhnya mengerti, coba jelaskan lebih detail ya.";
 };
