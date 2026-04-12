@@ -146,7 +146,7 @@ export default function Login() {
                     </p>
                 </div>
 
-                <div className="mt-6 p-4 rounded-2xl bg-white/5 border border-white/5 text-[10px] text-center text-white/40 uppercase tracking-[0.2em]">
+                <div className="mt-6 p-4 rounded-2xl bg-white/5 border border-white/5 text-[10px] text-center text-white/40  tracking-[0.2em]">
                     <p>Demo: Joko | joko123</p>
                 </div>
 
