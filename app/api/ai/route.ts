@@ -1,28 +1,23 @@
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(req: Request) {
   const { message } = await req.json();
 
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      {
-        role: "system",
-        content:
-          "Kamu adalah Mindora, AI kesehatan mental & umum. Jawab dengan empati, bahasa Indonesia santai, jangan diagnosa pasti, bantu seperti teman.",
-      },
-      {
-        role: "user",
-        content: message,
-      },
-    ],
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash",
   });
 
-  return Response.json({
-    reply: completion.choices[0].message.content,
-  });
+  const prompt = `
+Kamu adalah Mindora AI, asisten kesehatan mental.
+Jawab dengan empati, ramah, dan tidak menghakimi.
+
+User: ${message}
+`;
+
+  const result = await model.generateContent(prompt);
+  const text = result.response.text();
+
+  return Response.json({ reply: text });
 }
