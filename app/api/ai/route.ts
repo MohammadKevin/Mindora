@@ -16,6 +16,36 @@ type ApiError = {
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 
+async function generateWithRetry(
+  message: string,
+  history: Content[],
+): Promise<string> {
+  const models = ["gemini-2.5-flash", "gemini-1.5-flash"];
+
+  for (const modelName of models) {
+    for (let i = 0; i < 3; i++) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: modelName,
+        });
+
+        const chat = model.startChat({
+          history,
+        });
+
+        const result = await chat.sendMessage(message);
+        const response = await result.response;
+        return response.text();
+      } catch (err) {
+        if (i === 2) continue;
+        await new Promise((res) => setTimeout(res, 1000 * (i + 1)));
+      }
+    }
+  }
+
+  throw new Error("AI sedang sibuk, coba lagi ya 🤍");
+}
+
 export async function POST(
   req: Request,
 ): Promise<NextResponse<ApiSuccess | ApiError>> {
@@ -40,10 +70,6 @@ export async function POST(
           })
           .slice(-10)
       : [];
-
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
-    });
 
     const systemPrompt: Content = {
       role: "user",
@@ -103,24 +129,20 @@ Contoh gaya:
 
 Ingat:
 Kamu bukan sekadar AI, kamu adalah teman yang bikin pengguna merasa didengar.
-      `,
+          `,
         },
       ],
     };
 
-    const chat = model.startChat({
-      history: [systemPrompt, ...safeHistory],
-    });
+    const finalHistory: Content[] = [systemPrompt, ...safeHistory];
 
-    const result = await chat.sendMessage(body.message);
-    const response = await result.response;
-    const text: string = response.text();
+    const text = await generateWithRetry(body.message, finalHistory);
 
     return NextResponse.json({ reply: text });
   } catch (error: unknown) {
-    const message: string =
-      error instanceof Error ? error.message : "Server error";
-
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Mindora lagi ramai, coba lagi sebentar ya 🤍" },
+      { status: 500 },
+    );
   }
 }

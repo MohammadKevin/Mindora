@@ -5,6 +5,7 @@ import {
     Heart, Activity, Moon, MessageCircle,
     UserCheck, TrendingUp, Bell, Search, Zap
 } from "lucide-react"
+import Link from "next/link"
 
 export default function Dashboard() {
     const userName = "Joko"
@@ -24,7 +25,7 @@ export default function Dashboard() {
                             Halo, {userName}! 👋
                         </motion.h1>
                         <p className="text-slate-500 mt-1 text-sm">
-                            Bagaimana perasaanmu hari ini? Mari cek progresmu.
+                            Gimana kabarmu hari ini? Yuk lihat perkembanganmu.
                         </p>
                     </div>
 
@@ -33,7 +34,7 @@ export default function Dashboard() {
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                             <input
                                 type="text"
-                                placeholder="Cari aktivitas..."
+                                placeholder="Cari sesuatu..."
                                 className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none w-56"
                             />
                         </div>
@@ -46,14 +47,14 @@ export default function Dashboard() {
                 </header>
 
                 <p className="text-xs text-slate-400 mb-6">
-                    Data masih simulasi karena sistem frontend-only
+                    Beberapa fitur masih dalam tahap pengembangan
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <StatCard title="Heart Rate" value="78" unit="BPM" status="Normal" color="red" icon={<Heart />} progress={78} />
+                    <StatCard title="Detak Jantung" value="78" unit="BPM" status="Normal" color="red" icon={<Heart />} progress={78} />
                     <StatCard title="Langkah" value="6.542" unit="Steps" status="65% dari target" color="emerald" icon={<Activity />} progress={65} />
-                    <StatCard title="Tidur" value="7h 20m" unit="Good" status="8h target" color="blue" icon={<Moon />} progress={90} />
-                    <StatCard title="Mental" value="Stable" unit="Happy" status="😊 Sangat Baik" color="orange" icon={<Zap />} progress={85} />
+                    <StatCard title="Tidur" value="7h 20m" unit="Baik" status="Target 8 jam" color="blue" icon={<Moon />} progress={90} />
+                    <StatCard title="Mental" value="Stabil" unit="😊" status="Kondisi baik" color="orange" icon={<Zap />} progress={85} />
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -89,18 +90,28 @@ export default function Dashboard() {
                     </motion.div>
 
                     <div className="space-y-4">
-                        <ActionCard
-                            title="AI Chat"
-                            desc="Curhat sekarang"
-                            icon={<MessageCircle className="w-5 h-5" />}
-                            color="bg-purple-600"
-                        />
-                        <ActionCard
-                            title="Konsultasi"
-                            desc="Cari dokter"
-                            icon={<UserCheck className="w-5 h-5" />}
-                            color="bg-teal-600"
-                        />
+
+                        <Link href="/chat" >
+                            <ActionCard
+                                title="Teman Cerita"
+                                desc="Mulai ngobrol"
+                                icon={<MessageCircle className="w-5 h-5" />}
+                                color="bg-purple-600"
+                            />
+                        </Link>
+
+                        <div className="relative opacity-70 pt-[10px]">
+                            <ActionCard
+                                title="Konsultasi"
+                                desc="Cari bantuan profesional"
+                                icon={<UserCheck className="w-5 h-5" />}
+                                color="bg-teal-600"
+                            />
+                            <span className="absolute top-2 right-2 text-[9px] bg-white/80 text-slate-600 px-2 py-0.5 rounded-md font-semibold">
+                                Segera Hadir
+                            </span>
+                        </div>
+
                     </div>
 
                 </div>
@@ -163,7 +174,7 @@ function ActionCard({ title, desc, icon, color }: ActionCardProps) {
     return (
         <motion.div
             whileHover={{ scale: 1.02 }}
-            className={`${color} p-5 rounded-xl text-white`}
+            className={`${color} p-5 rounded-xl text-white cursor-pointer`}
         >
             <div className="mb-3">{icon}</div>
             <h4 className="font-bold">{title}</h4>

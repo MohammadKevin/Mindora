@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { Mood } from "@/types"
 
 type MoodData = {
@@ -56,7 +57,7 @@ export default function MoodPicker() {
     const selected = moods.find((m) => m.value === mood)
 
     return (
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mx-auto pt-2.5">
 
             <h1 className="text-3xl font-black text-[#222] mb-2">Mood Tracker</h1>
             <p className="text-sm text-slate-500 mb-8">
@@ -113,12 +114,27 @@ export default function MoodPicker() {
                         </div>
 
                         <div className="grid grid-cols-2 gap-3">
-                            <button className="bg-emerald-500 text-white py-3 rounded-xl font-semibold hover:bg-emerald-600 transition">
-                                Chat AI
-                            </button>
-                            <button className="bg-white border border-slate-200 py-3 rounded-xl font-semibold hover:bg-slate-50 transition">
-                                Cari Dokter
-                            </button>
+
+                            <Link
+                                href="/chat"
+                                className="flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
+                            >
+                                🤖 Chat AI
+                            </Link>
+
+                            <div className="relative">
+                                <button
+                                    disabled
+                                    className="w-full bg-slate-100 border border-slate-200 py-3 rounded-xl font-semibold text-slate-400 cursor-not-allowed"
+                                >
+                                    🩺 Cari Dokter
+                                </button>
+
+                                <span className="absolute -top-2 -right-2 text-[9px] bg-yellow-400 text-white px-2 py-0.5 rounded-md font-bold shadow">
+                                    COMING SOON
+                                </span>
+                            </div>
+
                         </div>
                     </motion.div>
                 )}

@@ -69,8 +69,6 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
-
-      {/* 🚧 PROTOTYPE NOTICE */}
       <section className="relative px-6 pb-20 z-10 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -86,18 +84,21 @@ export default function Home() {
             Website <span className="font-semibold text-white">Mindora</span> saat ini masih dalam tahap pengembangan (prototype).
           </p>
 
+          <p className="text-white/70 leading-relaxed mb-3">
+            Fitur AI sudah dapat digunakan dan didukung oleh teknologi <span className="font-semibold text-white">Google Gemini</span>.
+          </p>
+
           <p className="text-white/60 text-sm leading-relaxed">
-            Beberapa fitur belum sepenuhnya berfungsi karena sistem backend belum terintegrasi.
-            Data yang ditampilkan, termasuk AI, masih bersifat terbatas dan berdasarkan input yang disediakan oleh developer.
+            Namun, sistem backend belum sepenuhnya terintegrasi. Sebagian besar fitur masih berjalan dengan logic sederhana dan belum menggunakan penyimpanan data permanen.
           </p>
 
           <div className="mt-6 text-xs text-white/40">
-            Versi ini dibuat untuk keperluan demo & pengembangan UI/UX.
+            Versi ini dibuat untuk demo, pengujian fitur AI, dan pengembangan UI/UX.
           </div>
         </motion.div>
       </section>
 
-      {/* FEATURES */}
+
       <section id="features" className="relative px-6 pb-32 z-10 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <FeatureCard

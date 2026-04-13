@@ -12,12 +12,17 @@ export default function DoctorCard({ doctor }: Props) {
     return (
         <motion.div
             whileHover={{ y: -5 }}
-            className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm transition"
+            className="relative bg-white p-5 rounded-2xl border border-slate-100 shadow-sm transition"
         >
+
+            <div className="absolute top-3 right-3 text-[10px] bg-yellow-100 text-yellow-600 px-2 py-1 rounded-lg font-semibold">
+                Coming Soon
+            </div>
+
             <div className="flex items-center gap-4 mb-4">
 
                 <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-lg font-bold text-emerald-600">
-                    {doctor.name.charAt(3)}
+                    {doctor.name.charAt(0)}
                 </div>
 
                 <div>
@@ -38,9 +43,12 @@ export default function DoctorCard({ doctor }: Props) {
                 </span>
             </div>
 
-            <button className="w-full flex items-center justify-center gap-2 bg-emerald-500 text-white py-2.5 rounded-xl font-semibold hover:bg-emerald-600 transition">
+            <button
+                disabled
+                className="w-full flex items-center justify-center gap-2 bg-slate-200 text-slate-500 py-2.5 rounded-xl font-semibold cursor-not-allowed"
+            >
                 <MessageCircle size={16} />
-                Konsultasi
+                Belum bisa digunakan
             </button>
         </motion.div>
     )
