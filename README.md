@@ -18,10 +18,10 @@ Mindora is an intelligent journaling platform leveraging Google Gemini Generativ
 ---
 
 ## ✨ Key Features
-- ⚡ **AI-driven journal entry analysis and positive affirmation generator**: AI-driven journal entry analysis and positive affirmation generator
-- ⚡ **Mood tracker with sentiment visualization over time**: Mood tracker with sentiment visualization over time
-- ⚡ **Encrypted private journal entries and secure user authentication**: Encrypted private journal entries and secure user authentication
-- ⚡ **Clean, distraction-free writing environment with calming aesthetics**: Clean, distraction-free writing environment with calming aesthetics
+- AI-driven journal entry analysis and positive affirmation generator
+- Mood tracker with sentiment visualization over time
+- Encrypted private journal entries and secure user authentication
+- Clean, distraction-free writing environment with calming aesthetics
 
 ---
 
