@@ -12,12 +12,12 @@
 
 ---
 
-## 📌 Overview
+## Overview
 Mindora is an intelligent journaling platform leveraging Google Gemini Generative AI to provide empathetic reflections, mood sentiment analysis, and personalized mental wellness insights.
 
 ---
 
-## ✨ Key Features
+## Key Features
 - AI-driven journal entry analysis and positive affirmation generator
 - Mood tracker with sentiment visualization over time
 - Encrypted private journal entries and secure user authentication
@@ -25,7 +25,7 @@ Mindora is an intelligent journaling platform leveraging Google Gemini Generativ
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 - **Framework**: Next.js 14
 - **AI**: @google/generative-ai (Gemini Pro)
 - **Language**: TypeScript
@@ -33,7 +33,7 @@ Mindora is an intelligent journaling platform leveraging Google Gemini Generativ
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 ```text
 Mindora/
 ├── app/
@@ -46,7 +46,7 @@ Mindora/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 Make sure you have the required runtimes and tools installed on your machine:
@@ -64,7 +64,7 @@ npm run dev
 
 ---
 
-## 👤 Author
+## Author
 **Mohammad Kevin Arif Rudianto**
 - **GitHub:** [@MohammadKevin](https://github.com/MohammadKevin)
 - **Portfolio:** [portfolio-mohammadkevin.vercel.app](https://portfolio-mohammadkevin.vercel.app)
@@ -73,9 +73,9 @@ npm run dev
 
 ---
 
-## 📄 License
+## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 <div align="center">
-⭐️ If you found this repository useful, please consider giving it a star!
+If you found this repository useful, please consider giving it a star!
 </div>
